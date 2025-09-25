@@ -29,3 +29,11 @@ export function addNewTask() {
   resetForm();
   overlay.close();
 }
+
+/** updates an exsiting task */
+export function updateTask(taskId, updates) {
+  const tasks = loadTasksFromStorage();
+  const updatedTasks =tasks.map((task) =>
+    task.id === taskId ? {...task, ...updates} : task);
+
+}
