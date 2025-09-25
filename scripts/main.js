@@ -11,11 +11,16 @@ import { setupSidebarToggle } from "./ui/sidebarHandler.js";
 /**imoprting mobile sidebar menu */
 import { setupMobileMenu } from "./ui/sidebarHandler.js";
 
+/**impoting theme toggle */
+import { setupThemeToggle } from "./ui/themeHandler.js";
+
+
 
 function initTaskBoard() {
   const tasks = loadTasksFromStorage();
   setupSidebarToggle();
   setupMobileMenu();
+   setupThemeToggle();
   clearExistingTasks();
   renderTasks(tasks);
   setupModalCloseHandler();

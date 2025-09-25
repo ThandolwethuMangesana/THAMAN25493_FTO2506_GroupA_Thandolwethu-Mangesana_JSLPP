@@ -12,3 +12,4 @@ export function setupThemeToggle() {
   const saved = localStorage.getItem("theme") || "light";
   document.body.setAttribute("data-theme", saved);
 }
+
