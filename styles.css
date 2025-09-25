@@ -85,6 +85,18 @@ h4 {
   overflow: hidden; /* Prevents overflowed text/icons from showing */
 }
 
+/* Sidebar footer container */
+.sidebar-footer {
+  margin-top: auto;
+  padding: 16px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+
 /* ===============
    Main Layout
 ================ */
