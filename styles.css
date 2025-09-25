@@ -95,7 +95,20 @@ h4 {
   justify-content: space-between;
 }
 
-
+/* Buttons in footer */
+.sidebar-footer .theme-toggle,
+.sidebar-footer .hide-sidebar-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--secondary-color);
+  border: none;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font: Plus Jakarta Sans;
+  color: var(--primary-btn-color);
+}
 
 /* ===============
    Main Layout
