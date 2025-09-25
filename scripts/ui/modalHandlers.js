@@ -47,7 +47,10 @@ deleteBtn.onclick = () => {
   }
 };
 
-
+/**
+ * Opens the task modal with pre-filled task data.
+ * @param {Object} task - The task object to edit.
+ */
 export function openTaskModal(task) {
   const modal = document.getElementById("task-modal");
   document.getElementById("task-title").value = task.title;

@@ -42,6 +42,11 @@ renderTasks(updatedTasks);
 
 }
 
+/**
+ * Opens the task modal with pre-filled task data.
+ * @param {Object} task - The task object to edit.
+ */
+
 /**Delete a task */
  export function deleteTask(taskId) {
   const tasks = loadTasksFromStorage();

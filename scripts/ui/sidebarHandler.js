@@ -1,3 +1,8 @@
+/**
+ * Opens the task modal with pre-filled task data.
+ * @param {Object} task - The task object to edit.
+ */
+
 export function setupSidebarToggle() {
   const sideBar = document.getElementById("side-bar-div");
   const hideBtn = document.getElementById("hide-sidebar-btn");
