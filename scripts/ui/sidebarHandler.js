@@ -15,3 +15,14 @@ export function setupSidebarToggle() {
     hideBtn.style.display = "block";
   });
 }
+
+/**mobile side bar */
+
+export function setupMobileMenu() {
+  const menuIcon = document.getElementById("mobile-menu-icon");
+  const sidebar = document.getElementById("side-bar-div");
+
+  menuIcon.addEventListener("click", () => {
+    sidebar.classList.toggle("open");
+  });
+}
