@@ -8,9 +8,14 @@ import {
 /**importing setup side bar */
 import { setupSidebarToggle } from "./ui/sidebarHandler.js";
 
+/**imoprting mobile sidebar menu */
+import { setupMobileMenu } from "./ui/sidebarHandler.js";
+
+
 function initTaskBoard() {
   const tasks = loadTasksFromStorage();
   setupSidebarToggle();
+  setupMobileMenu();
   clearExistingTasks();
   renderTasks(tasks);
   setupModalCloseHandler();
