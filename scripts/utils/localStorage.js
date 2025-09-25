@@ -24,5 +24,9 @@ export function loadTasksFromStorage() {
  * @param {Array<Object>} tasks
  */
 export function saveTasksToStorage(tasks) {
-  localStorage.setItem("tasks", JSON.stringify(tasks));
+  try {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  } catch (err) {
+    console.error("Error saving tasks to localStorage:", err);
+  }
 }
