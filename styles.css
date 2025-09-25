@@ -18,10 +18,17 @@
   /* Sidebar fixed width */
 }
 
+[data-theme="dark"] {
+  --bg-color: #000000;
+  --text-color: #ffffff;
+}
+
 /* ================
    Base Elements
 ================ */
 body {
+  background-color: var(--primary-color);
+  color: #000000;
   font-family: "Plus Jakarta Sans", sans-serif;
   display: flex;
   /* Allow layout to span horizontally */
