@@ -1,30 +1,71 @@
-import { loadTasksFromStorage } from "./utils/localStorage.js";
+import { loadTasksFromStorage, saveTasksToStorage } from "./utils/localStorage.js";
+import { fetchTasksFromAPI } from "./utils/api.js";
 import { clearExistingTasks, renderTasks } from "./ui/render.js";
-import {
-  setupModalCloseHandler,
-  setupNewTaskModalHandler,
-} from "./ui/modalHandlers.js";
-
-/**importing setup side bar */
-import { setupSidebarToggle } from "./ui/sidebarHandler.js";
-
-/**imoprting mobile sidebar menu */
-import { setupMobileMenu } from "./ui/sidebarHandler.js";
-
-/**impoting theme toggle */
+import { setupModalCloseHandler, setupNewTaskModalHandler, openTaskModal } from "./ui/modalHandlers.js";
+import { setupSidebarToggle, setupMobileMenu } from "./ui/sidebarHandler.js";
 import { setupThemeToggle } from "./ui/themeHandler.js";
 
+/**
+ * Shows a transient status message (loading or error).
+ * @param {"loading"|"error"} type
+ * @param {string} message
+ */
+function showStatus(type, message) {
+  const banner = document.getElementById("status-banner");
+  if (!banner) return;
+  banner.textContent = message;
+  banner.setAttribute("data-type", type);
+  banner.style.display = "block";
+}
 
+/**
+ * Hides the status banner.
+ */
+function hideStatus() {
+  const banner = document.getElementById("status-banner");
+  if (!banner) return;
+  banner.style.display = "none";
+  banner.textContent = "";
+  banner.removeAttribute("data-type");
+}
 
-function initTaskBoard() {
-  const tasks = loadTasksFromStorage();
-  setupSidebarToggle();
-  setupMobileMenu();
-   setupThemeToggle();
+/**
+ * Initializes the Kanban board:
+ * - Loads tasks from API (with loading/error states), falls back to localStorage
+ * - Persists tasks to localStorage
+ * - Renders UI and wires up handlers
+ */
+async function initTaskBoard() {
+  showStatus("loading", "Loading tasks…");
+  let tasks = [];
+
+  try {
+    const apiTasks = await fetchTasksFromAPI("https://jsl-kanban-api.vercel.app/");
+    if (Array.isArray(apiTasks) && apiTasks.length > 0) {
+      saveTasksToStorage(apiTasks);
+      tasks = apiTasks;
+    } else {
+      tasks = loadTasksFromStorage();
+    }
+  } catch (err) {
+    showStatus("error", "Failed to fetch tasks. Using saved tasks.");
+    tasks = loadTasksFromStorage();
+  } finally {
+    hideStatus();
+  }
+
   clearExistingTasks();
   renderTasks(tasks);
+
+  // Handlers
   setupModalCloseHandler();
   setupNewTaskModalHandler();
+  setupSidebarToggle();
+  setupMobileMenu();
+  setupThemeToggle();
+
+  // Expose modal open for cards
+  window.openTaskModal = openTaskModal;
 }
 
 document.addEventListener("DOMContentLoaded", initTaskBoard);
