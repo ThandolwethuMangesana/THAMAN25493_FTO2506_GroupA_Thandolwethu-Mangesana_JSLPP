@@ -29,6 +29,25 @@ export function setupNewTaskModalHandler() {
   });
 }
 
+// Save changes
+saveBtn.onclick = () => {
+  updateTask(task.id, {
+    title: document.getElementById("task-title").value.trim(),
+    description: document.getElementById("task-desc").value.trim(),
+    status: document.getElementById("task-status").value,
+  });
+  modal.close();
+};
+
+// Delete task
+deleteBtn.onclick = () => {
+  if (confirm("Are you sure you want to delete this task?")) {
+    deleteTask(task.id);
+    modal.close();
+  }
+};
+
+
 export function openTaskModal(task) {
   const modal = document.getElementById("task-modal");
   document.getElementById("task-title").value = task.title;
