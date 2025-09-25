@@ -29,13 +29,18 @@
         <h4 id="headline-sidepanel">ALL BOARDS (1)</h4>
         <button class="board-btn">Launch Career</button>
       </div>
-      <div class="theme"><Button class="toggle-switch-btn"><span class="light-theme"><img src="./assets/icon-light-theme.svg" alt="light-theme"></span><label class="switch">
-        <label class="switch">
-        <input type="checkbox" checked>
-        <span class="slider round"></span>
-        </label>
-        <span class="dark-theme"><img src="./assets/icon-dark-theme.svg" alt=""></span></Button></div>
-        <div class="hide-sidebar"><button><span><img src="./assets/icon-hide-sidebar.svg" alt="hide sidebar"></span>Hide Sidebar</button></div>
+
+      <div class="side-bar-footer">
+        <!-- theme toggle-->
+         <div class="theme-toggle">
+          <span class="light-theme"><img src="./assets/icon-light-theme.svg" alt="icon-light-theme"></span>
+          <label class="switch">
+            <input type="checkbox" id="theme-toggle-checkbox"/>
+            <span class="slider-round"></span>
+          </label>
+          <span class="dark-theme"><img src="./assets/icon-dark-theme.svg" alt="icon-dark-theme"></span>
+         </div>
+      </div>
     </nav>
 
     <!-- Main Layout: Header with board title, add task button, and main content area for task columns. -->
