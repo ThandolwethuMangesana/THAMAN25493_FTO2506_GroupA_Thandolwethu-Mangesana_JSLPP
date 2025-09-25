@@ -19,10 +19,6 @@
   </head>
 
   <body>
-    <!--loading circle-->
-    <div id="loading-box" class="loadind-box">
-    </div>
-
     <!-- Navigation Sidebar: Contains the logo, navigation links for boards, and theme toggle. -->
     <nav class="side-bar" id="side-bar-div">
       <div id="side-logo-div">
@@ -32,27 +28,6 @@
       <div class="boards-nav-links-div" id="boards-nav-links-div">
         <h4 id="headline-sidepanel">ALL BOARDS (1)</h4>
         <button class="board-btn">Launch Career</button>
-      </div>
-
-      <div class="side-bar-footer">
-        <!-- theme toggle-->
-        <div class="theme-toggle">
-          <span class="light-theme"
-            ><img src="./assets/icon-light-theme.svg" alt="icon-light-theme"
-          /></span>
-          <label class="switch">
-            <input type="checkbox" id="theme-toggle-checkbox" />
-            <span class="slider-round"></span>
-          </label>
-          <span class="dark-theme"
-            ><img src="./assets/icon-dark-theme.svg" alt="icon-dark-theme"
-          /></span>
-        </div>
-        <!--Hide Side button-->
-        <button id="hide-sidebar-btn" aria-label="hide side bar">
-          <img src="./assets/icon-hide-sidebar.svg" alt="icon-hide-sidebar" />
-          Hide Sidebar
-        </button>
       </div>
     </nav>
 
@@ -128,12 +103,6 @@
           <option value="doing">doing</option>
           <option value="done">done</option>
         </select>
-        <div class="modal-footer">
-          <button id="save-btn" class="saveBtn">Save Changes</button>
-          <button id="delete-btn" class="deleteBtn"></button>
-        </div>
-
-        </div>
       </form>
     </dialog>
     <!-- New Task Modal: Form for adding a new task. -->
