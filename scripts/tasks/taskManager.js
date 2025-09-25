@@ -36,4 +36,6 @@ export function updateTask(taskId, updates) {
   const updatedTasks =tasks.map((task) =>
     task.id === taskId ? {...task, ...updates} : task);
 
+saveTasksToStorage(updated)
+
 }
