@@ -36,6 +36,19 @@ export function updateTask(taskId, updates) {
   const updatedTasks =tasks.map((task) =>
     task.id === taskId ? {...task, ...updates} : task);
 
-saveTasksToStorage(updated)
+saveTasksToStorage(updatedTasks);
+clearExistingTasks();
+renderTasks(updatedTasks);
 
 }
+
+/**Delete a task */
+ export function deleteTask(taskId) {
+  const tasks = loadTasksFromStorage();
+  const updatedTasks = tasks.filter((task) => task.id !== taskId);
+
+  saveTasksToStorage(updatedTasks);
+  clearExistingTasks();
+  renderTasks(updatedTasks);
+  
+ }
