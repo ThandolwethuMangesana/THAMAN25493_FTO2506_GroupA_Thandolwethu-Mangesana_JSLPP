@@ -1,12 +1,11 @@
 /**
- * Opens the task modal with pre-filled task data.
- * @param {Object} task - The task object to edit.
+ * Desktop sidebar toggle: hide/show sidebar.
  */
-
 export function setupSidebarToggle() {
-  const sideBar = document.getElementById("side-bar-div");
-  const hideBtn = document.getElementById("hide-sidebar-btn");
+  const sidebar = document.getElementById("side-bar-div");
+  const hideBtn = document.getElement("hide-sidebar-btn");
   const showBtn = document.getElementById("show-sidebar-btn");
+  if (!sidebar || !hideBtn || !showBtn) return;
 
   hideBtn.addEventListener("click", () => {
     sidebar.classList.add("hidden");
@@ -21,11 +20,10 @@ export function setupSidebarToggle() {
   });
 }
 
-/**mobile side bar */
-
 export function setupMobileMenu() {
   const menuIcon = document.getElementById("mobile-menu-icon");
   const sidebar = document.getElementById("side-bar-div");
+  if (!menuIcon || !sidebar) return;
 
   menuIcon.addEventListener("click", () => {
     sidebar.classList.toggle("open");
