@@ -7,6 +7,8 @@ import { setupThemeToggle } from "./ui/themeHandler.js";
 
 /**
  * Shows a transient status message (loading or error).
+ * @param {"loading"|"error"} type - The type of status.
+ * @param {string} message - The message to display.
  */
 function showStatus(type, message) {
   const banner = document.getElementById("status-banner");
@@ -46,7 +48,7 @@ async function initTaskBoard() {
       tasks = loadTasksFromStorage();
     }
   } catch (err) {
-    showStatus("error", "Fetch Failed");
+    showStatus("error", "Failed to fetch");
     tasks = loadTasksFromStorage();
   } finally {
     hideStatus();
