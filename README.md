@@ -46,10 +46,11 @@ live-server
  ```
 ---
 
-- 🎥 Demo & Presentation
+# 🎥 Demo & Presentation
 
-- Live Deployment
+# Live Deployment
 
+- https://thandolwethu-mangesana-kanban-board.netlify.app
 ---
 
 🤝 Contributing
