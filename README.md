@@ -48,6 +48,8 @@ live-server
 
 # 🎥 Demo & Presentation
 
+- https://www.loom.com/share/dc2a9eb0f757417386d3203e37e758bd?sid=24e854f3-a9aa-4fca-9b7d-5eae48ea3b61
+
 # Live Deployment
 
 - https://thandolwethu-mangesana-kanban-board.netlify.app
