@@ -1,59 +1,39 @@
-import {
-  loadTasksFromStorage,
-  saveTasksToStorage,
-} from "../utils/localStorage.js";
+import { loadTasksFromStorage, saveTasksToStorage } from "../utils/localStorage.js";
 import { clearExistingTasks, renderTasks } from "../ui/render.js";
-import { resetForm } from "./formUtils.js";
 
-export function addNewTask() {
-  const title = document.getElementById("title-input").value.trim();
-  const description = document.getElementById("desc-input").value.trim();
-  const status = document.getElementById("select-status").value;
-  const overlay = document.querySelector(".modal-overlay");
-
-  if (!title) return;
-
-  const tasks = loadTasksFromStorage();
-  const newTask = {
-    id: tasks.length ? Math.max(...tasks.map((t) => t.id)) + 1 : 1,
-    title,
-    description,
-    status,
-  };
-
-  const updatedTasks = [...tasks, newTask];
-  saveTasksToStorage(updatedTasks);
-
-  clearExistingTasks();
-  renderTasks(updatedTasks);
-  resetForm();
-  overlay.close();
-}
-
-/** updates an exsiting task */
-export function updateTask(taskId, updates) {
-  const tasks = loadTasksFromStorage();
-  const updatedTasks =tasks.map((task) =>
-    task.id === taskId ? {...task, ...updates} : task);
-
-saveTasksToStorage(updatedTasks);
-clearExistingTasks();
-renderTasks(updatedTasks);
-
+/**
+ * Sorts tasks by priority (High → Medium → Low).
+ * @param {Array<Object>} tasks - The tasks to sort.
+ * @returns {Array<Object>} Sorted tasks.
+ */
+function sortByPriority(tasks) {
+  const order = { high: 1, medium: 2, low: 3 };
+  return [...tasks].sort((a, b) => order[a.priority] - order[b.priority]);
 }
 
 /**
- * Opens the task modal with pre-filled task data.
- * @param {Object} task - The task object to edit.
+ * Updates an existing task in localStorage and re-renders the board.
+ * @param {number|string} taskId - The ID of the task to update.
+ * @param {Object} updates - The updated fields { title, description, status, priority }.
  */
-
-/**Delete a task */
- export function deleteTask(taskId) {
+export function updateTask(taskId, updates) {
   const tasks = loadTasksFromStorage();
-  const updatedTasks = tasks.filter((task) => task.id !== taskId);
-
+  const updatedTasks = tasks.map((task) =>
+    task.id === taskId ? { ...task, ...updates } : task
+  );
   saveTasksToStorage(updatedTasks);
   clearExistingTasks();
-  renderTasks(updatedTasks);
-  
- }
+  renderTasks(sortByPriority(updatedTasks));
+}
+
+/**
+ * Deletes a task by ID from localStorage and re-renders the board.
+ * @param {number|string} taskId - The ID of the task to delete.
+ */
+export function deleteTask(taskId) {
+  const tasks = loadTasksFromStorage();
+  const updatedTasks = tasks.filter((task) => task.id !== taskId);
+  saveTasksToStorage(updatedTasks);
+  clearExistingTasks();
+  renderTasks(sortByPriority(updatedTasks));
+}
