@@ -7,8 +7,6 @@ import { setupThemeToggle } from "./ui/themeHandler.js";
 
 /**
  * Shows a transient status message (loading or error).
- * @param {"loading"|"error"} type
- * @param {string} message
  */
 function showStatus(type, message) {
   const banner = document.getElementById("status-banner");
@@ -40,7 +38,7 @@ async function initTaskBoard() {
   let tasks = [];
 
   try {
-    const apiTasks = await fetchTasksFromAPI("https://jsl-kanban-api.vercel.app/");
+    const apiTasks = await fetchTasksFromAPI();
     if (Array.isArray(apiTasks) && apiTasks.length > 0) {
       saveTasksToStorage(apiTasks);
       tasks = apiTasks;
