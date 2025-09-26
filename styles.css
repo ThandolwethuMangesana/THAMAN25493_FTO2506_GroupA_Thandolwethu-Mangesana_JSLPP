@@ -2,8 +2,7 @@
    Global & Root Variables
 ======================== */
 * {
-  box-sizing: border-box;
-  /* Ensures padding and border are included in total element size */
+  box-sizing: border-box; /* Ensures padding and border are included in total element size */
 }
 
 :root {
@@ -11,34 +10,62 @@
   --secondary-color: #f4f7fd;
   --primary-font-color: #000000;
   --secondary-font-color: #828fa3;
-  --primary-btn-color: #635fc7;
-  --primary-box-shadow: 0px 4px 6px rgba(54, 78, 126, 0.1015);
-  /* Subtle shadow for card depth */
-  --sidebar-width: 300px;
-  /* Sidebar fixed width */
+  --primary-box-shadow: 0px 4px 6px rgba(54, 78, 126, 0.1015); /* Subtle shadow for card depth */
+  --sidebar-width: 300px; /* Sidebar fixed width */
+}
+body.dark {
+  --primary-color: #2b2c37;
+  --secondary-color: #20212c;
+  --primary-font-color: #ffffff;
+  --secondary-font-color: #a3a3a3;
+  --primary-box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  --sidebar: Dark Grey;
+}
+/* Dark mode styles for modal */
+body.dark #task-modal {
+  background-color:#20212C;
+ /* Dark background */
+  color: #ffffff; 
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+  border: none;
 }
 
-[data-theme="dark"] {
-  --bg-color: #000000;
-  --text-color: #ffffff;
+body.dark #task-modal form label {
+  color: #a3a3a3; 
 }
+
+body.dark #task-modal input,
+body.dark #task-modal textarea,
+body.dark #task-modal select {
+  background-color: #20212c;
+  color: #fff; 
+  border: 1px solid #635fc7; 
+}
+
+body.dark .save-btn {
+  background-color: #8a86ff; 
+  color: white;
+}
+
+body.dark .delete-btn {
+  background-color: #ea5555;
+  color: white;
+}
+
+
 
 /* ================
    Base Elements
 ================ */
 body {
-  background-color: var(--primary-color);
-  color: #000000;
   font-family: "Plus Jakarta Sans", sans-serif;
-  display: flex;
-  /* Allow layout to span horizontally */
+  display: flex; /* Allow layout to span horizontally */
   flex-direction: row;
   width: 100%;
   min-height: 100vh;
   margin: 0;
   background-color: var(--secondary-color);
-  font-size: 1rem;
-  /* Base font size for rem scaling */
+  font-size: 1rem; 
 }
 
 /* ================
@@ -48,22 +75,19 @@ body {
   display: flex;
   flex-direction: column;
   background-color: var(--primary-color);
-  border-right: 1px solid #e4ebfa;
-  /* Light divider */
+  border-right: 1px solid #e4ebfa; 
   width: var(--sidebar-width);
   height: 100vh;
 }
 
 #side-logo-div {
-  margin: 33px 113px 54px 34px;
-  /* Spacing around logo */
+  margin: 33px 113px 54px 34px; /* Spacing around logo */
   display: flex;
   justify-content: flex-start;
 }
 
 #logo {
   width: 100%;
-  /* Make logo responsive within container */
 }
 
 .boards-nav-links-div {
@@ -73,85 +97,174 @@ body {
 }
 
 #headline-sidepanel {
-  padding: 0 12px 0 50px;
-  /* Aligns section content from left and right */
+  padding: 0 12px 0 50px; /* Aligns section content from left and right */
 }
 
 h4 {
   color: var(--secondary-font-color);
   font-size: 0.75rem;
-  letter-spacing: 0.125rem;
-  /* Makes heading more spaced */
+  letter-spacing: 0.125rem; /* Makes heading more spaced */
 }
 
 .board-btn {
   font-family: inherit;
   display: flex;
   align-items: center;
-  gap: 10px;
-  /* Space between icon and text */
-  background-color: var(--primary-btn-color);
+  gap: 10px; /* Space between icon and text */
+  background-color: #635fc7;
   color: #fff;
   border: none;
   border-radius: 0 100px 100px 0;
-  /* Pill shape only on right side */
   height: 48px;
   width: 276px;
   padding: 28px 12px 28px 50px;
   font-size: 0.9375rem;
   font-weight: bold;
   cursor: pointer;
-  overflow: hidden;
-  /* Prevents overflowed text/icons from showing */
+  overflow: hidden; 
 }
-
-/* Sidebar footer container */
 .sidebar-footer {
   margin-top: auto;
-  padding: 16px;
   display: flex;
-  gap: 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  gap: 16px;
+  border-top: 1px solid #e4ebfa;
+}
+.theme-toggle {
+  display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 10px;
+  margin-left: auto;
+  padding-right: 20px;
+  width: 251px;
+height: 48px;
+top: 784px;
+left: 16px;
+border-radius: 6px;
+ background: #F4F7FD;
+ justify-content: flex-start;
 }
 
-/* Buttons in footer */
-.sidebar-footer .theme-toggle,
-.sidebar-footer .hide-sidebar-btn {
-  display: block;
-  align-items: center;
-  gap: 8px;
-  background: var(--secondary-color);
-  border: none;
-  padding: 8px 10px;
-  border-radius: 8px;
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
   cursor: pointer;
-  font: Plus Jakarta Sans;
-  color: var(--primary-btn-color);
+  background-color: #ccc;
+  border-radius: 34px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
 }
 
-.hide-sidebar-btn {
-  padding: 10px 20px;
-  background-color: var(--primary-btn-color);
+body.dark .slider {
+  background-color: #635fc7;
+}
+
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 3px;
+  background-color:  white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color:black;
+}
+
+input:checked + .slider::before {
+  transform: translateX(26px);
+  background-color:  white;
+}
+
+.slider.round {
+  border-radius: 34px;
+  background-color:  #635fc7;
+}
+
+.slider.round::before {
+  border-radius: 50%;
+}
+
+#hide-sidebar-btn {
+  border: none;
+  color:  #635fc7;
+  font-size: 0.9rem;
+  align-self: flex-start;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  width: 276px;
+height: 49.745452880859375px;
+top: 846px;
+border-top-right-radius: 100px;
+border-bottom-right-radius: 100px;
+background: #F4F7FD;
+margin-right: 200px;
+ justify-content: flex-start;
+}
+
+#hide-sidebar-btn:hover {
+  color: var(--primary-font-color);
+}
+#show-sidebar-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 2000;
+  background: #A8A4FF;
+width: 56px;
+height: 48px;
+border-top-right-radius: 100px;
+border-bottom-right-radius: 100px;
+  cursor: pointer;
+  display: none; /* Hidden initially */
+  
+}
+
+
+.side-bar {
+  transition: transform 0.3s ease;
+  transform: translateX(0);
+}
+
+.side-bar.closed {
+  transform: translateX(-100%);
+}
+body.dark .theme-toggle {
+  background: #635fc7;
+}
+
+body.dark #hide-sidebar-btn {
+  background: #635fc7;
   color: white;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.hide-sidebar-btn:hover {
-  text-decoration: underline;
-  /* Add underline on hover */
 }
 
 /* ===============
    Main Layout
 ================ */
 #layout {
-  flex: 1;
-  /* Fills remaining space beside sidebar */
-  overflow-x: hidden;
-  /* Prevent horizontal scroll */
+  flex: 1; /* Fills remaining space beside sidebar */
+  overflow-x: hidden; /* Prevent horizontal scroll */
   width: 100%;
 }
 
@@ -178,8 +291,7 @@ header {
 }
 
 .logo-mobile {
-  display: none;
-  /* Hidden on desktop; shown on smaller screens */
+  display: none; /* Hidden on desktop; shown on smaller screens */
 }
 
 /* ===============
@@ -194,11 +306,11 @@ header {
 
 .card-column-main {
   display: grid;
-  grid-template-columns: repeat(3,
-      minmax(0, 304px));
-  /* 3 columns with min size */
-  gap: 8px;
-  /* Space between columns */
+  grid-template-columns: repeat(
+    3,
+    minmax(0, 304px)
+  ); /* 3 columns with min size */
+  gap: 8px; /* Space between columns */
 }
 
 .column-div {
@@ -212,8 +324,7 @@ header {
 .column-head-div {
   display: flex;
   align-items: center;
-  gap: 10px;
-  /* Space between dot and column title */
+  gap: 10px; /* Space between dot and column title */
 }
 
 .columnHeader {
@@ -227,8 +338,7 @@ header {
 .dot {
   height: 15px;
   width: 15px;
-  border-radius: 50%;
-  /* Make it circular */
+  border-radius: 50%; /* Make it circular */
   display: inline-block;
 }
 
@@ -262,8 +372,7 @@ header {
   color: var(--primary-font-color);
   border-radius: 12px;
   box-shadow: var(--primary-box-shadow);
-  cursor: pointer;
-  /* Indicate it's clickable */
+  cursor: pointer; 
   margin-bottom: 20px;
   font-size: 0.9375rem;
   font-weight: bold;
@@ -305,7 +414,8 @@ dialog {
   padding: 24px;
   background-color: #fff;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  /*font-family: "Plus Jakarta Sans", sans-serif;*/
+  overflow-x: hidden;
+  font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 /* Header */
@@ -313,6 +423,7 @@ dialog {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 16px;
 }
 
 .modal-header h3 {
@@ -326,10 +437,7 @@ dialog {
   font-size: 2.5rem;
   line-height: 1;
   cursor: pointer;
-  color: #ea5555;
-  transition: transform 0.2s ease-in-out, font-weight 0.2s ease-in-out;
-  transition-delay: 0.1s;
-  /* Delay before scaling */
+  color: red;
 }
 
 .close-btn:hover {
@@ -345,7 +453,7 @@ dialog {
 form label {
   display: block;
   font-weight: 600;
-  font-size: 0.75rem;
+  font-size: 0.75em;
   margin-top: 12px;
   margin-bottom: 4px;
   color: #828fa3;
@@ -364,16 +472,40 @@ form select {
 }
 
 form select {
-  appearance: none;
-  /* Remove native arrow */
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="%23828FA3" stroke-width="3" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>') no-repeat right 0.75rem center;
+  appearance: none; /* Remove native arrow */
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="%23828FA3" stroke-width="3" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>')
+    no-repeat right 0.75rem center;
 
   background-size: 1.4rem;
   padding-right: 1rem;
 }
+.save-btn {
+  background-color: #635fc7;
+  color: white;
+  border: none;
+  width: 200px;
+  height:40px;
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1em;
+  margin-right: 8em;
+}
+.delete-btn {
+  background-color: #ea5555;
+  color: white;
+  border: none;
+  width:200px;
+  height:40px;
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
 
 #add-new-task-btn {
-  background-color: var(--primary-btn-color);
+  background-color: #635fc7;
   color: white;
   border-radius: 30px;
   border: 0;
@@ -385,57 +517,40 @@ form select {
   cursor: pointer;
   margin-right: 20px;
 }
+#createBtn {
+  background-color: #635fc7;
+  color: white;
+  border: none;
+  width: 200px;
+  height: 40px;
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+}
 
-/* New Task Modal Window */
-
-.modal-window {
-  /* border: 5px solid red; */
-  display: flex;
-  flex-direction: column;
+.loading-box {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 600px;
-  display: flex;
-  flex-direction: column;
-  padding: 24px;
-  gap: 20px;
-  background-color: var(--primary-color);
-  font-weight: 500;
-  font-size: 14px;
-  border-radius: 10px;
-
-  z-index: 3;
-  transition: all 0.3s ease-in;
+  background-color: #f0f0f0;
+  border: 2px solid #333;
+  padding: 20px 40px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  z-index: 1000;
+  display: none;
+  border-radius: 8px;
+  text-align: center;
+  min-width: 250px;
 }
 
-.submit-btn {
-  background-color: var(--primary-btn-color);
-  color: white;
-  border-radius: 30px;
-  border: 0;
-  font-size: 16px;
-  padding: 14px;
-  padding-left: 35px;
-  padding-right: 35px;
-  font-weight: 600;
-  cursor: pointer;
-  flex-grow: 1;
-  /* Allows the button to grow and fill the space */
-  margin: 5px 0;
-  /* Optional: adds a margin between buttons */
-}
 
-textarea {
-  font-size: 16px;
-  color: black;
-  height: 90px;
-  padding: 10px;
-  border-radius: 4px;
-  resize: vertical;
-}
+
 
 /* ========================
    Responsive Styles
@@ -444,14 +559,12 @@ textarea {
 /******** Tablets ********/
 @media screen and (max-width: 1023px) {
   .side-bar {
-    display: none;
-    /* Hide sidebar on tablets and smaller */
+    display: none; /* Hide sidebar on tablets and smaller */
   }
 
   .side-bar.show-sidebar {
     display: flex !important;
-    position: fixed;
-    /* Overlay on top of page */
+    position: fixed; /* Overlay on top of page */
     height: auto;
   }
 
@@ -480,8 +593,7 @@ textarea {
   .container {
     padding: 0;
     width: 100%;
-    align-items: center;
-    /* Center columns on smaller screens */
+    align-items: center; /* Center columns on smaller screens */
   }
 
   .card-column-main {
@@ -524,16 +636,16 @@ textarea {
 /******** Mobile ********/
 @media screen and (max-width: 576px) {
   .card-column-main {
-    grid-template-columns: minmax(0,
-        380px);
-    /* Stack columns in single column */
+    grid-template-columns: minmax(
+      0,
+      380px
+    ); /* Stack columns in single column */
   }
 
   .column-div {
     padding: 24px;
   }
-
-  #add-new-task-btn {
+   #add-new-task-btn {
     font-size: 0;
     padding: 12px;
   }
@@ -547,4 +659,19 @@ textarea {
     padding-top: 0;
     padding-bottom: 0;
   }
+
+  .header-board-name{
+    display:none;
+  }
+
+  .save-btn{
+    width: 100%;
+    margin-bottom: 1em;
+  }
+
+  .delete-btn{
+    width: 100%;
+  }
+  
 }
+
