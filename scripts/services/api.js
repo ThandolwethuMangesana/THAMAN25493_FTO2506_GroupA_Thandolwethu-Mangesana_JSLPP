@@ -11,11 +11,10 @@ export async function fetchTasksFromAPI() {
     if (!res.ok) throw new Error(`API error: ${res.status}`);
     data = await res.json();
   } catch (err) {
-    console.error("Error fetching tasks from API:", err);
+    console.error("Failed to fetch:", err);
     data = []; // fallback handled in main.js
   } finally {
     console.log("API fetch attempt finished");
   }
   return data;
 }
-
