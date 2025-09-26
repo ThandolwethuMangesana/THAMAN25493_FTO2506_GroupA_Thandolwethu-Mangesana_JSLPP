@@ -46,7 +46,7 @@ async function initTaskBoard() {
       tasks = loadTasksFromStorage();
     }
   } catch (err) {
-    showStatus("error", "Failed to fetch tasks. Using saved tasks.");
+    showStatus("error", "Fetch Failed");
     tasks = loadTasksFromStorage();
   } finally {
     hideStatus();
